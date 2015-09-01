@@ -70,10 +70,10 @@ app.post('/sendmail', function(request, response) {
 	  response.write("Welcome to Node.js on OpenShift!\n\n");
 	  response.end("Thanks for visiting us! \n");
 });
-
-server.listen( port, ipaddress, function() {
-    console.log((new Date()) + ' Server is listening on port 8080');
-});
+//
+// server.listen( port, ipaddress, function() {
+//     console.log((new Date()) + ' Server is listening on port 8080');
+// });
 
 
 
