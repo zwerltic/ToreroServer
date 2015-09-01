@@ -4,6 +4,7 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var http = require('http');
 var nodemailer = require('nodemailer');
 var conekta = require('conekta');
+var app = require('express');
 
 conekta.api_key = 'key_EfsX62HbiTSNsuHr5q6xv2Q';
 conekta.locale = 'es';
@@ -29,8 +30,9 @@ var mailOptions = {
     html: '<b>Hello world ✔</b>' // html body
 };
 
-var server = http.createServer(function(request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.body.token + ' by ' + request.name + ' ' + request.last);
+app.post('/sendmail', function(request, response) {
+
+    console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.body.token + ' by ' + request.body.name + ' ' + request.body.last);
     // send mail with defined transport object
     conekta.Charge.create({
       amount: 51000,
