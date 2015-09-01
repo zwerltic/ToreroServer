@@ -44,7 +44,7 @@ var server = http.createServer(function(request, response) {
           name: "Amparo",
           sku: "amp_s1",
           unit_price: 250000,
-          description: "Mex.",
+          description: "Mexico.",
           quantity: 1,
           type: "laws-purchase"
         }]
