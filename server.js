@@ -33,20 +33,20 @@ var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.param.token + ' by ' + request.name + ' ' + request.last);
     // send mail with defined transport object
     conekta.Charge.create({
-      amount: 51000,
+      amount: 250000,
       currency: "MXN",
-      description: "Pizza Delivery",
+      description: "tramite de amparo",
       reference_id: "internal_order_id",
       card: "tok_test_visa_4242",
       details: {
         email: "logan@x-men.org",
         line_items: [{
-          name: "Box of Cohiba S1s",
-          sku: "cohb_s1",
-          unit_price: 51000,
-          description: "Imported from Mex.",
+          name: "Amparo",
+          sku: "amp_s1",
+          unit_price: 250000,
+          description: "Mex.",
           quantity: 1,
-          type: "pizza-purchase"
+          type: "laws-purchase"
         }]
       }
       }, function(res) {
