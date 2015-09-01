@@ -4,7 +4,6 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var http = require('http');
 var nodemailer = require('nodemailer');
 var conekta = require('conekta');
-var app = require('express');
 
 conekta.api_key = 'key_EfsX62HbiTSNsuHr5q6xv2Q';
 conekta.locale = 'es';
@@ -30,44 +29,40 @@ var mailOptions = {
     html: '<b>Hello world ✔</b>' // html body
 };
 
-app.post('/sendmail', function(req, response) {
-  console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.param.token + ' by ' + request.name + ' ' + request.last);
-  conekta.Charge.create({
-    amount: 51000,
-    currency: "MXN",
-    description: "Pizza Delivery",
-    reference_id: "internal_order_id",
-    card: "tok_test_visa_4242",
-    details: {
-      email: "logan@x-men.org",
-      line_items: [{
-        name: "Box of Cohiba S1s",
-        sku: "cohb_s1",
-        unit_price: 51000,
-        description: "Imported from Mex.",
-        quantity: 1,
-        type: "pizza-purchase"
-      }]
-    }
-    }, function(res) {
-      console.log(res.toObject());
-      transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            response.write("Message gone wrong");
-            return console.log(error);
-          }
-            console.log('Message sent: ' + info.response);
-            response.write("message sent");
-
-        });
-    }, function(err) {
-      console.log(err.message_to_purchaser);
-    });
-})
 var server = http.createServer(function(request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url );
+    console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.param.token + ' by ' + request.name + ' ' + request.last);
     // send mail with defined transport object
+    conekta.Charge.create({
+      amount: 51000,
+      currency: "MXN",
+      description: "Pizza Delivery",
+      reference_id: "internal_order_id",
+      card: "tok_test_visa_4242",
+      details: {
+        email: "logan@x-men.org",
+        line_items: [{
+          name: "Box of Cohiba S1s",
+          sku: "cohb_s1",
+          unit_price: 51000,
+          description: "Imported from Mex.",
+          quantity: 1,
+          type: "pizza-purchase"
+        }]
+      }
+      }, function(res) {
+        console.log(res.toObject());
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+              response.write("Message gone wrong");
+              return console.log(error);
+            }
+              console.log('Message sent: ' + info.response);
+              response.write("message sent");
 
+          });
+      }, function(err) {
+        console.log(err.message_to_purchaser);
+      });
 
 	response.writeHead(200, {'Content-Type': 'text/plain'});
 	  response.write("Welcome to Node.js on OpenShift!\n\n");
