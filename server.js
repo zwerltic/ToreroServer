@@ -37,7 +37,7 @@ var server = http.createServer(function(request, response) {
       currency: "MXN",
       description: "Pizza Delivery",
       reference_id: "internal_order_id",
-      card: req.body.conektaTokenId,
+      card: "tok_test_visa_4242",
       details: {
         email: "logan@x-men.org",
         line_items: [{
