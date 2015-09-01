@@ -30,9 +30,11 @@ var server = http.createServer(function(request, response) {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
       if(error){
+          response.write("Message gone wrong");
           return console.log(error);
         }
-        console.log('Message sent: ' + info.response);
+          console.log('Message sent: ' + info.response);
+          response.write("message sent");
 
       });
 	response.writeHead(200, {'Content-Type': 'text/plain'});
