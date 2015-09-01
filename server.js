@@ -30,7 +30,7 @@ var mailOptions = {
 };
 
 var server = http.createServer(function(request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + req.body.token + ' by ' + request.name + ' ' + request.last);
+    console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.body.token + ' by ' + request.name + ' ' + request.last);
     // send mail with defined transport object
     conekta.Charge.create({
       amount: 51000,
