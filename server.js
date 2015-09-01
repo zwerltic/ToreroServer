@@ -12,8 +12,8 @@ conekta.locale = 'es';
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'zwerltic@gmail.com',
-        pass: '1916zweRltic'
+        user: 'toreroapp@gmail.com',
+        pass: 'crater790'
     }
 });
 
@@ -23,7 +23,7 @@ var transporter = nodemailer.createTransport({
 // setup e-mail data with unicode symbols
 var mailOptions = {
     from: 'Torero Server <zwerltic@gmail.com>', // sender address
-    to: 'jose.tlacuilo@gmail.com', // list of receivers
+    to: 'toreroapp@gmail.com ,jose.tlacuilo@gmail.com', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world ✔', // plaintext body
     html: '<b>Hello world ✔</b>' // html body
