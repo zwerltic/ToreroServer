@@ -2,12 +2,34 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+var nodemailer = require('nodemailer');
+
+// create reusable transporter object using SMTP transport
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'zwerltic@gmail.com',
+        pass: 'userpass'
+    }
+});
+
+// NB! No need to recreate the transporter object. You can use
+// the same transporter object for all e-mails
+
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: 'Torero Server <zwerltic@gmail.com>', // sender address
+    to: 'jose.tlacuilo@gmail.com', // list of receivers
+    subject: 'New Torero App Request', // Subject line
+    text: 'Hello world ✔', // plaintext body
+    html: '<b>Hello world ✔</b>' // html body
+};
 
 
 /**
  *  Define the sample application.
  */
-var SampleApp = function() {
+var ToreroApp = function() {
 
     //  Scope.
     var self = this;
@@ -143,6 +165,14 @@ var SampleApp = function() {
         self.app.listen(self.port, self.ipaddress, function() {
             console.log('%s: Node server started on %s:%d ...',
                         Date(Date.now() ), self.ipaddress, self.port);
+                        // send mail with defined transport object
+            transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+
+            });
         });
     };
 
@@ -153,7 +183,6 @@ var SampleApp = function() {
 /**
  *  main():  Main code.
  */
-var zapp = new SampleApp();
-zapp.initialize();
-zapp.start();
-
+var torero = new ToreroApp();
+torero.initialize();
+torero.start();

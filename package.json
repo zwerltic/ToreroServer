@@ -1,16 +1,19 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "OpenShift-Torero-App",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "Torero is a law oriented application that seeks to facilitate the availabilty of AMPAROS",
   "keywords": [
     "OpenShift",
     "Node.js",
     "application",
-    "openshift"
+    "openshift",
+    "Amparos",
+    "Mexico",
+    "CDMX"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
+    "name": "Jose Tlacuilo",
+    "email": "jose.tlacuilo@gmail.com",
     "url": "http://www.openshift.com/"
   },
   "homepage": "http://www.openshift.com/",
