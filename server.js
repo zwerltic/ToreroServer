@@ -22,7 +22,7 @@ var transporter = nodemailer.createTransport({
 
 // setup e-mail data with unicode symbols
 var mailOptions = {
-    from: 'Torero Server <zwerltic@gmail.com>', // sender address
+    from: 'Torero Server <toreroapp@gmail.com>', // sender address
     to: 'toreroapp@gmail.com ,jose.tlacuilo@gmail.com, zwerltic@gmail.coms', // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world ✔', // plaintext body
