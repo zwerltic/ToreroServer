@@ -3,6 +3,10 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 var http = require('http');
 var nodemailer = require('nodemailer');
+var conekta = require('conekta');
+
+conekta.api_key = 'key_EfsX62HbiTSNsuHr5q6xv2Q';
+conekta.locale = 'es';
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
@@ -28,15 +32,30 @@ var mailOptions = {
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-          response.write("Message gone wrong");
-          return console.log(error);
+    conekta.Charge.create({
+      description: 'Stogies',
+      amount: 50000,
+      currency: 'MXN',
+      reference_id: '9839-wolf_pack',
+      card: 'tok_test_visa_4242',
+      details: {
+          email: 'logan@x-men.org'
         }
-          console.log('Message sent: ' + info.response);
-          response.write("message sent");
+      }, function(res) {
+        console.log(res.toObject());
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+              response.write("Message gone wrong");
+              return console.log(error);
+            }
+              console.log('Message sent: ' + info.response);
+              response.write("message sent");
 
+          });
+      }, function(err) {
+        console.log(err.message_to_purchaser);
       });
+
 	response.writeHead(200, {'Content-Type': 'text/plain'});
 	  response.write("Welcome to Node.js on OpenShift!\n\n");
 	  response.end("Thanks for visiting us! \n");
