@@ -30,7 +30,7 @@ var mailOptions = {
 };
 
 var server = http.createServer(function(request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url + ' With token: ' + request.param.token + ' by ' + request.name + ' ' + request.last);
+    console.log((new Date()) + ' Received request for ' + request.url );
     // send mail with defined transport object
     conekta.Charge.create({
       amount: 250000,
@@ -39,7 +39,7 @@ var server = http.createServer(function(request, response) {
       reference_id: "internal_order_id",
       card: "tok_test_visa_4242",
       details: {
-        email: "logan@x-men.org",
+        email: "toreroapp@gmail.com",
         line_items: [{
           name: "Amparo",
           sku: "amp_s1",
