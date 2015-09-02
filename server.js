@@ -32,37 +32,37 @@ var mailOptions = {
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url );
     // send mail with defined transport object
-    conekta.Charge.create({
-      amount: 250000,
-      currency: "MXN",
-      description: "tramite de amparo",
-      reference_id: "internal_order_id",
-      card: "tok_test_visa_4242",
-      details: {
-        email: "toreroapp@gmail.com",
-        line_items: [{
-          name: "Amparo",
-          sku: "amp_s1",
-          unit_price: 250000,
-          description: "Mexico.",
-          quantity: 1,
-          type: "laws-purchase"
-        }]
-      }
-      }, function(res) {
-        console.log(res.toObject());
-        transporter.sendMail(mailOptions, function(error, info){
-          if(error){
-              response.write("Message gone wrong");
-              return console.log(error);
-            }
-              console.log('Message sent: ' + info.response);
-              response.write("message sent");
-
-          });
-      }, function(err) {
-        console.log(err.message_to_purchaser);
-      });
+    // conekta.Charge.create({
+    //   amount: 250000,
+    //   currency: "MXN",
+    //   description: "tramite de amparo",
+    //   reference_id: "internal_order_id",
+    //   card: "tok_test_visa_4242",
+    //   details: {
+    //     email: "toreroapp@gmail.com",
+    //     line_items: [{
+    //       name: "Amparo",
+    //       sku: "amp_s1",
+    //       unit_price: 250000,
+    //       description: "Mexico.",
+    //       quantity: 1,
+    //       type: "laws-purchase"
+    //     }]
+    //   }
+    //   }, function(res) {
+    //     console.log(res.toObject());
+    //     transporter.sendMail(mailOptions, function(error, info){
+    //       if(error){
+    //           response.write("Message gone wrong");
+    //           return console.log(error);
+    //         }
+    //           console.log('Message sent: ' + info.response);
+    //           response.write("message sent");
+    //
+    //       });
+    //   }, function(err) {
+    //     console.log(err.message_to_purchaser);
+    //   });
 
 	response.writeHead(200, {'Content-Type': 'text/plain'});
 	  response.write("Welcome to Node.js on OpenShift!\n\n");
