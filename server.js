@@ -1,7 +1,7 @@
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
-var http = require('http');
+//var http = require('http');
 
 var nodemailer = require('nodemailer');
 var conekta = require('conekta');
@@ -9,8 +9,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var dispatcher = require('httpdispatcher');
-var url = require('url');
+//var dispatcher = require('httpdispatcher');
+//var url = require('url');
 
 conekta.api_key = 'key_EfsX62HbiTSNsuHr5q6xv2Q';
 conekta.locale = 'es';
