@@ -5,6 +5,7 @@ var http = require('http');
 var nodemailer = require('nodemailer');
 var conekta = require('conekta');
 var dispatcher = require('httpdispatcher');
+var url = require('url');
 
 conekta.api_key = 'key_EfsX62HbiTSNsuHr5q6xv2Q';
 conekta.locale = 'es';
@@ -52,6 +53,9 @@ function handleRequest(request, response){
 
 //A sample POST request
 dispatcher.onPost("/charge", function(req, res) {
+  var queryObject = url.parse(req.url,true).query;
+  console.log(queryObject);
+
     conekta.Charge.create({
       amount: 250000,
       currency: "MXN",
