@@ -1,7 +1,7 @@
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
-//var http = require('http');
+var http = require('http');
 
 var nodemailer = require('nodemailer');
 var conekta = require('conekta');
@@ -35,13 +35,23 @@ var mailOptions = {
     text: 'Hello world ✔', // plaintext body
     html: '<b>Hello world ✔</b>' // html body
 };
+
+
+var server = http.createServer(app);
+
+server.listen( port, ipaddress, function() {
+    console.log((new Date()) + ' Server is listening on port 8080');
+
+    console.log("Listening to " + ipaddress + ":" + port + "...");
+});
+
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
 app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
-console.log((new Date()) + ' Server is listening on port 8080');
+
 
 
 
@@ -54,7 +64,7 @@ console.log((new Date()) + ' Server is listening on port 8080');
 //
 //     console.log("Listening to " + ipaddress + ":" + port + "...");
 // });
-//
+
 
 
 
