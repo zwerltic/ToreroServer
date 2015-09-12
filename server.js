@@ -35,7 +35,8 @@ var mailOptions = {
     text: 'Hello world ✔', // plaintext body
     html: '<b>Hello world ✔</b>' // html body
 };
-
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
+app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.listen(port);
