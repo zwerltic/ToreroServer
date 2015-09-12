@@ -112,7 +112,7 @@ app.post('/api/charge', function(req, res) {
       currency: "MXN",
       description: "tramite de amparo",
       reference_id: "internal_order_id",
-      card: "tok_test_visa_4242",
+      card: token,
       details: {
         email: "toreroapp@gmail.com",
         line_items: [{
@@ -138,7 +138,7 @@ app.post('/api/charge', function(req, res) {
       }, function(err) {
         console.log(err.message_to_purchaser);
       });
-    console.log(user_id + ' ' + token + ' ' + geo);;
+    console.log( ' ' + token );;
     res.end('Got Post Data');
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
