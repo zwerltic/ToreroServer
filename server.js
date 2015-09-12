@@ -8,6 +8,15 @@ var conekta = require('conekta');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var token;
+var name;
+var last;
+var street;
+var number;
+var colonia;
+var deleg;
+var juzgado;
+var itinerante;
 
 //var dispatcher = require('httpdispatcher');
 //var url = require('url');
@@ -31,8 +40,10 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
     from: 'Torero Server <toreroapp@gmail.com>', // sender address
     to: 'zwerltic@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ✔', // plaintext body
+    subject: 'New request from:' + name, // Subject line
+    text: 'Nombre: ' + name + '\nApellido: ' + last + '\nCalle: ' + street +
+          '\nNumero: ' + number + '\nColonia: ' + colonia + '\nDelegacion: '
+          + deleg + '\nJuzgado: ' + juzgado + '\nItinerante: ' + itinerante, // plaintext body
     html: '<b>Hello world ✔</b>' // html body
 };
 
@@ -85,9 +96,15 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //Express style post
 
 app.post('/api/charge', function(req, res) {
-    var user_id = req.body.id;
-    var token = req.body.token;
-    var geo = req.body.geo;
+    token = req.body.token;
+    name = req.body.name;
+    last = req.body.last;
+    street = req.body.street;
+    number = req.body.number;
+    colonia = req.body.colonia;
+    deleg = req.body.deleg;
+    juzgado = req.body.juzgado;
+    itinerante = req.body.itinerante;
     conekta.Charge.create({
       amount: 250000,
       currency: "MXN",
