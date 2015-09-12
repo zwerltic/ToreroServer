@@ -44,9 +44,9 @@ var mailOptions = {
     text: 'Nombre: ' + name + '\nApellido: ' + last + '\nCalle: ' + street +
           '\nNumero: ' + number + '\nColonia: ' + colonia + '\nDelegacion: '
           + deleg + '\nJuzgado: ' + juzgado + '\nItinerante: ' + itinerante, // plaintext body
-    html: '<b>Nombre: ' + name + '\nApellido: ' + last + '\nCalle: ' + street +
-          '\nNumero: ' + number + '\nColonia: ' + colonia + '\nDelegacion: '
-          + deleg + '\nJuzgado: ' + juzgado + '\nItinerante: ' + itinerante + '<b>'// html body
+    html: '<b><p>Nombre: ' + name + '</p><p>Apellido: ' + last + '</p><p>Calle: ' + street +
+          '</p><p>Numero: ' + number + '</p><p>Colonia: ' + colonia + '</p><p>Delegacion: '
+          + deleg + '</p><p>Juzgado: ' + juzgado + '</p><p>Itinerante: ' + itinerante + '</p></b>'// html body
 };
 
 
