@@ -124,7 +124,7 @@ app.post('/api/charge', function(req, res) {
           type: "laws-purchase"
         }]
       }
-      }, function(res) {
+    }, function(response) {
         console.log(res.toObject());
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
