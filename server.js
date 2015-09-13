@@ -128,19 +128,20 @@ app.post('/api/charge', function(req, response) {
         console.log(res.toObject());
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-              res.write("Message gone wrong");
+              response.send('pago no enviado')
               return console.log(error);
               finalResponse = 'Su pago no pudo ser enviado'
             }
+              response.send('Success')
               console.log('Message sent: ' + info.response);
-              res.write("Success");
+
 
           });
       }, function(err) {
         console.log(err.message_to_purchaser);
+        response.send('Payment failed')
       });
     console.log( ' ' + token );;
-    response.send('Got post request')
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
