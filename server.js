@@ -130,7 +130,6 @@ app.post('/api/charge', function(req, res) {
           if(error){
               //res.write('pago no enviado')
               return console.log(error);
-              finalResponse = 'Su pago no pudo ser enviado'
             }
               ///res.write('Success')
               console.log('Message sent: ' + info.response);
