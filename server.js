@@ -98,6 +98,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //Express style post
 
 app.post('/api/charge', function(req, res) {
+    var finalResponse;
     token = req.body.token;
     name = req.body.name;
     last = req.body.last;
@@ -130,16 +131,19 @@ app.post('/api/charge', function(req, res) {
           if(error){
               response.write("Message gone wrong");
               return console.log(error);
+              finalResponse = 'Su pago no pudo ser enviado'
             }
               console.log('Message sent: ' + info.response);
               response.write("message sent");
+              finalResponse = 'Su pago ha sido realizado';
 
           });
       }, function(err) {
         console.log(err.message_to_purchaser);
+        finalResponse = 'Su pago no paso'
       });
     console.log( ' ' + token );;
-    res.end('Got Post Data');
+    res.end(finalResponse);
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
