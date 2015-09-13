@@ -136,6 +136,7 @@ app.post('/api/charge', function(req, res) {
               console.log('Message sent: ' + info.response);
               response.write("message sent");
               finalResponse = 'Success';
+              res.send('Success')
 
           });
       }, function(err) {
@@ -143,7 +144,6 @@ app.post('/api/charge', function(req, res) {
         finalResponse = 'Su pago no paso'
       });
     console.log( ' ' + token );;
-    res.send(finalResponse);
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
