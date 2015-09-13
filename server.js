@@ -97,7 +97,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 //Express style post
 
-app.post('/api/charge', function(req, response) {
+app.post('/api/charge', function(req, res) {
     token = req.body.token;
     name = req.body.name;
     last = req.body.last;
@@ -128,11 +128,11 @@ app.post('/api/charge', function(req, response) {
         console.log(res.toObject());
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-              response.write('pago no enviado')
+              res.write('pago no enviado')
               return console.log(error);
               finalResponse = 'Su pago no pudo ser enviado'
             }
-              response.write('Success')
+              res.write('Success')
               console.log('Message sent: ' + info.response);
 
 
@@ -142,7 +142,7 @@ app.post('/api/charge', function(req, response) {
         response.write('Payment failed')
       });
     console.log( ' ' + token );;
-    response.end();
+    res.end();
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
