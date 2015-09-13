@@ -97,8 +97,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 //Express style post
 
-app.post('/api/charge', function(req, res) {
-    var finalResponse;
+app.post('/api/charge', function(req, response) {
     token = req.body.token;
     name = req.body.name;
     last = req.body.last;
@@ -110,7 +109,7 @@ app.post('/api/charge', function(req, res) {
     itinerante = req.body.itinerante;
     conekta.Charge.create({
       amount: 250000,
-      currency: "MXN",
+      currency: "MXN"
       description: "tramite de amparo",
       reference_id: "internal_order_id",
       card: token,
@@ -129,21 +128,19 @@ app.post('/api/charge', function(req, res) {
         console.log(res.toObject());
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-              response.write("Message gone wrong");
+              res.write("Message gone wrong");
               return console.log(error);
               finalResponse = 'Su pago no pudo ser enviado'
             }
               console.log('Message sent: ' + info.response);
-              response.write("message sent");
-              finalResponse = 'Success';
-              res.end('Success')
+              res.write("Success");
 
           });
       }, function(err) {
         console.log(err.message_to_purchaser);
-        finalResponse = 'Su pago no paso'
       });
     console.log( ' ' + token );;
+    response.send('Got post request')
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
