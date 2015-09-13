@@ -142,7 +142,7 @@ app.post('/api/charge', function(req, res) {
         response.write('Payment failed')
       });
     console.log( ' ' + token );;
-    res.end();
+    res.end('Get post data');
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
