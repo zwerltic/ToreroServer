@@ -136,7 +136,7 @@ app.post('/api/charge', function(req, res) {
               console.log('Message sent: ' + info.response);
               response.write("message sent");
               finalResponse = 'Success';
-              res.send('Success')
+              res.end('Success')
 
           });
       }, function(err) {
