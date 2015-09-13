@@ -139,7 +139,7 @@ app.post('/api/charge', function(req, res) {
           });
       }, function(err) {
         console.log(err.message_to_purchaser);
-        response.write('Payment failed')
+        res.write('Payment failed')
       });
     console.log( ' ' + token );;
     res.end('Get post data');
