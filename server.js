@@ -109,7 +109,7 @@ app.post('/api/charge', function(req, res) {
     itinerante = req.body.itinerante;
     conekta.Charge.create({
       amount: 250000,
-      currency: "MXN"
+      currency: "MXN",
       description: "tramite de amparo",
       reference_id: "internal_order_id",
       card: token,
@@ -128,20 +128,20 @@ app.post('/api/charge', function(req, res) {
         console.log(res.toObject());
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-              //res.write('pago no enviado')
+              res.write('pago no enviado')
               return console.log(error);
             }
-              ///res.write('Success')
+              res.write('Success')
               console.log('Message sent: ' + info.response);
 
 
           });
       }, function(err) {
         console.log(err.message_to_purchaser);
-        //res.write('Payment failed')
+        res.write('Payment failed')
       });
-    console.log( ' ' + token );;
-    res.end('Get post data');
+    console.log( ' ' + token );
+    res.end();
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
