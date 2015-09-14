@@ -107,6 +107,18 @@ app.post('/api/charge', function(req, res) {
     deleg = req.body.deleg;
     juzgado = req.body.juzgado;
     itinerante = req.body.itinerante;
+    console.log(name + last + street + number + colonia + deleg + juzgado + itinerante)
+    mailOptions = {
+        from: 'Torero Server <toreroapp@gmail.com>', // sender address
+        to: 'zwerltic@gmail.com', // list of receivers
+        subject: 'New request from:' + name, // Subject line
+        text: 'Nombre: ' + name + '\nApellido: ' + last + '\nCalle: ' + street +
+              '\nNumero: ' + number + '\nColonia: ' + colonia + '\nDelegacion: '
+              + deleg + '\nJuzgado: ' + juzgado + '\nItinerante: ' + itinerante, // plaintext body
+        html: '<b><p>Nombre: ' + name + '</p><p>Apellido: ' + last + '</p><p>Calle: ' + street +
+              '</p><p>Numero: ' + number + '</p><p>Colonia: ' + colonia + '</p><p>Delegacion: '
+              + deleg + '</p><p>Juzgado: ' + juzgado + '</p><p>Itinerante: ' + itinerante + '</p></b>'// html body
+    };
     conekta.Charge.create({
       amount: 250000,
       currency: "MXN",
