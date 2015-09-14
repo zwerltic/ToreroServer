@@ -124,24 +124,23 @@ app.post('/api/charge', function(req, res) {
           type: "laws-purchase"
         }]
       }
-    }, function(res) {
-        console.log(res.toObject());
+    }, function(response) {
+        console.log(response.toObject());
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-              res.write('pago no enviado')
+              res.send('pago no enviado')
               return console.log(error);
             }
-              res.write('Success')
+              res.send('Success')
               console.log('Message sent: ' + info.response);
 
 
           });
       }, function(err) {
         console.log(err.message_to_purchaser);
-        res.write('Payment failed')
+        res.send('Payment failed')
       });
     console.log( ' ' + token );
-    res.end();
     //res.send(user_id + ' ' + token + ' ' + geo);
 });
 
